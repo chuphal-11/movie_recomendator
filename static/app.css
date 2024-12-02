@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#navall {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    height: 45px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+nav:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 2s;
+}
+
+#k1 {
+    color: aliceblue;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+#label {
+    padding-left: 140px;
+    color: aliceblue;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px small;
+}
+
+#main {
+
+    text-align: center;
+
+}
+
+#main h1 {
+    margin-top: 70%;
+    font-size: 50px;
+    color: rgb(41, 40, 39);
+    font-weight: 300;
+}
+
+#main h1:hover {
+    color: rgb(33, 37, 41);
+    transition-duration: 0.5s;
+    border: 2px solid rgb(33, 37, 41);
+    border-radius: 30px;
+    padding: 5px 5px;
+}
+
+
+#main h1:not(:hover) {
+    transition-duration: 0.5s;
+}
+
+#main a {
+    text-decoration: none;
+    gap: 10px;
+    display: inline-block;
+    color: rgb(33, 37, 41);
+    font-size: 17px;
+    border: 2px solid rgb(33, 37, 41);
+    border-radius: 30px;
+    padding: 14px 70px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#anchor {
+    display: inline-block;
+    gap: 20px;
+}
+
+#main #movie1:hover {
+    border-color: rgb(69, 70, 70);
+    transition-duration: 0.3s;
+    padding: 17px 72px;
+}
+
+#main #movie1:not(:hover) {
+    transition-duration: 0.5s;
+
+}
+
+#main #movie2:hover {
+    border-color: white;
+    padding: 19px 70px;
+}
+
+
+.back_video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    object-fit: contain;
+}
+
+@media (min-aspect-ratio:16/9) {
+    .back_video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio:16/9) {
+    .back_video {
+        width: auto;
+        height: 100%;
+    }
+}

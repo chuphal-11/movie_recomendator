@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="../static/movie.css">
+</head>
+
+<body>
+    <div id="all">
+        <nav id="main1">
+            <video autoplay playsinline muted loop src="/static/vid2.mp4" id="k1"></video>
+            <div id="label"><a href="/">NExt move</a></div>
+            <ul>
+                <li><a href="">movie</a></li>X
+                <li><a href="">contact us</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="heading">
+
+        <h2>WELCOME TO MOVIE RECOMMENDER</h2>
+        <div>
+            <h3>ENTER A MOVIE TO RECOMMEND - </h3>
+            <form action="" method="post">
+                <input name="movie" type="text" id="inputData" style="color: rgb(219,224,230);"
+                    placeholder="  Enter movie">
+                <input type="submit">
+            </form>
+        </div>
+
+
+    </div>
+    {%if form%}
+    <div class="result">
+
+        <h2 style="color: rgb(219,224,230);">Result for - {{form[0].name}}</h2>
+    </div>
+    <div class="card-parent">
+
+
+        {%for i in form %}
+        <div class="card ">
+            <div class="card_img">
+                <div class="card_rating">
+                    <div class="card_rating1">
+                        <img class="star" width="15px" src="/static/star.png" alt="dd">
+                        <span class="star_rating">{{i.rating}}</span>
+                    </div>
+
+                </div>
+                <img src={{i.imgurl}} loading="lazy" width="300px" height="400px" alt="card_img">
+            </div>
+            <div class="card_data">
+                <h3>{{i.title}}</h3>
+                <h4 class="card_genre"> Genre -
+                    {% for k in i.genres%}
+                    {{k}}</h4>
+                {%endfor%}
+                <h4 class="card_rating">rating - {{i.rating}}</h4>
+                <a href="#" class="card_read_more">Read more</a>
+            </div>
+
+        </div>
+        {%endfor%}
+        {%endif%}
+    </div>
+
+</body>
+
+</html>
