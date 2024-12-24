@@ -1,19 +1,12 @@
 from js import img
 from flask import Flask,render_template ,request
-
-from flask_wtf import FlaskForm
-import pickle
+import pandas as pd
 import difflib
 
 
 
-
-movie =pickle.load(open('movie_dataset/movies.pkl','rb'))
-similar1 = pickle.load(open('movie_dataset/similarity_1.pkl','rb'))
-similar2 = pickle.load(open('movie_dataset/similarity_2.pkl','rb'))
-similar3 = pickle.load(open('movie_dataset/similarity_3.pkl','rb'))
-similar4 = pickle.load(open('movie_dataset/similarity_4.pkl','rb'))
-similar5 = pickle.load(open('movie_dataset/similarity_5.pkl','rb'))
+movie =pd.read_pickle('movie_dataset/movies.pkl')
+similar1 = pd.read_pickle('movie_dataset/simi.pkl')
 
 
 def movie2(name):
@@ -25,22 +18,13 @@ def movie2(name):
 
     match = matc[0]
     index = movie[movie['title'] == match].index.values[0]
+#    print(index)
 
-    if index < 1000:
-        similarity_score2 = list(enumerate(similar1[index]))
-    elif index < 2000:
-        similarity_score2 = list(enumerate(similar2[index - 1000]))
-    elif index < 3000:
-        similarity_score2 = list(enumerate(similar3[index - 2000]))
-    elif index < 4000:
-        similarity_score2 = list(enumerate(similar4[index - 3000]))
-    else:
-        similarity_score2 = list(enumerate(similar5[index - 4000]))
-
-    sorted_data = sorted(similarity_score2, key=lambda x: x[1], reverse=True)
-
+    similarity_score2 = similar1[index]
+#    sorted_data = sorted(similarity_score2, key=lambda x: x[1], reverse=True)
+#    print(similarity_score2)
     data = []
-    for i, m in enumerate(sorted_data[:10]):
+    for i, m in enumerate(similarity_score2[:10]):
         idx = m[0]
         title = movie.iloc[idx]['title']
         score = movie.iloc[idx]['vote_average']
@@ -65,18 +49,17 @@ def movie2(name):
 
     return data  # Ensure this is at the correct indentation level
 
-def printd(data):
-    for i in data:
-        print(i)
+#def printd(data):
+#    for i in data:
+#        print(i)
 
 name='avenger'
 dat=movie2(name)
 
 
+
+
 app=Flask(__name__)
-
-
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -92,8 +75,6 @@ def movies():
     print('---------no DATA')
     return render_template('movies.html')
 
-if __name__=='__main__':
-    app.run(debug=True)
 
 #@app.route("/home")
 #def home():
